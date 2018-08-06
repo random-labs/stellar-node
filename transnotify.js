@@ -14,14 +14,17 @@ console.log("listening for transactions to address " + notifyAccount);
     
 var txDetailsHandler = function(transactionResult, paymentResponse){
     if (transactionResult.memo_type == 'text'){
-        var memo  = transactionResult.memo;
-        var tagUserType = memo.substr(0,1);
-        var tagUserId = memo.substr(1,memo.length);
+        let memo  = transactionResult.memo;
+        let tagUserType = memo.substr(0,1);
+        let tagUserId = memo.substr(1,memo.length);
+        let assetCode = (paymentResponse.asset_type == 'native') ? 'XLM'  : paymentResponse.asset_code;
         console.log('TAG User Type: ' + tagUserType);
         console.log('TAG UserID: ' + tagUserId);
         console.log('amount received: ' + paymentResponse.amount);
-        console.log('asset type: ' + paymentResponse.asset_type);
+        console.log('asset type: ' + paymentResponse.asset_type);           
+        console.log(assetCode);                     
         //TODO: insert your API call for Tagcash here
+       
         
     }
     else{
